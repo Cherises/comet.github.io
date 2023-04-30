@@ -1,5 +1,701 @@
-<html>
-  <body>
-    Hello World
-  </body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>昭质的小花园</title>
+    <style>
+        body {
+            padding:0;
+            margin:0 auto;
+            overflow:hidden;
+			width: 100%;
+        }
+
+		.mainBack{
+			position:relative;
+			top: 0;
+			left: 1px;
+			overflow: auto;
+			z-index: 1;
+			height: 100%;
+			color: #F5B396;
+		}
+
+
+
+
+		.nav {
+			height: 55px;
+			width: 100%;
+			/*background-color: #4d4d4d;*/
+			position: relative;
+			background-color: rgba(0, 0, 0, 0.51);
+			backdrop-filter: blur(5px);
+		}
+
+		.nav > .nav-header {
+			display: inline;
+		}
+
+		.nav > .nav-header > .nav-title {
+			display: inline-block;
+			font-size: 22px;
+			color: #fff;
+			padding: 10px 10px 10px 10px;
+		}
+
+		.nav > .nav-btn {
+			display: none;
+		}
+
+		.nav > .nav-links {
+			display: inline;
+			float: right;
+			font-size: 18px;
+		}
+
+		.nav > .nav-links > a {
+			display: inline-block;
+			padding: 13px 10px 13px 10px;
+			text-decoration: none;
+			color: #efefef;
+		}
+
+		.nav > .nav-links > a:hover {
+			background-color: rgba(0, 0, 0, 0.3);
+		}
+
+		.nav > #nav-check {
+			display: none;
+		}
+
+		@media (max-width:600px) {
+			.nav > .nav-btn {
+				display: inline-block;
+				position: absolute;
+				right: 0px;
+				top: 0px;
+			}
+			.nav > .nav-btn > label {
+				display: inline-block;
+				width: 50px;
+				height: 50px;
+				padding: 13px;
+			}
+			.nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+				background-color: rgba(0, 0, 0, 0.3);
+			}
+			.nav > .nav-btn > label > span {
+				display: block;
+				width: 25px;
+				height: 10px;
+				border-top: 2px solid #eee;
+			}
+			.nav > .nav-links {
+				position: absolute;
+				display: block;
+				width: 100%;
+				background-color: #333;
+				height: 0px;
+				transition: all 0.3s ease-in;
+				overflow-y: hidden;
+				top: 50px;
+				left: 0px;
+			}
+			.nav > .nav-links > a {
+				display: block;
+				width: 100%;
+			}
+			.nav > #nav-check:not(:checked) ~ .nav-links {
+				height: 0px;
+			}
+			.nav > #nav-check:checked ~ .nav-links {
+				height: calc(100vh - 50px);
+				overflow-y: auto;
+			}
+		}
+
+
+
+
+
+		:root {
+			--hue: 223;
+			--bg: hsl(var(--hue),90%,90%);
+			--fg: hsl(var(--hue),10%,10%);
+			--primary: hsl(var(--hue),90%,55%);
+			--trans-dur: 0.3s;
+			font-size: calc(16px + (20 - 16) * (100vw - 320px) / (1280 - 320));
+		}
+		body {
+			/*background-color: var(--bg);*/
+			background-image: url("hexu.jpg");
+			background-size: 100%;
+			background-attachment: fixed;
+			/*color: var(--fg);*/
+			font: 1em/1.5 "DM Sans", sans-serif;
+			/* height: 100vh; */
+			display: grid;
+			place-items: center;
+			/*transition:*/
+			/*		background-color var(--trans-dur),*/
+			/*		color var(--trans-dur);*/
+		}
+		.clock {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: wrap;
+			align-items: center;
+		}
+		.clock__block {
+			/*background-color: hsl(var(--hue),10%,90%);*/
+			background-color: rgba(0, 0, 0, 0.51);
+			backdrop-filter: blur(1px);
+			color: white;
+			border-radius: 0.5rem;
+			box-shadow: 0 1rem 2rem hsla(var(--hue),90%,50%,0.3);
+			font-size: 3em;
+			line-height: 2;
+			margin: 0.75rem;
+			overflow: hidden;
+			text-align: center;
+			width: 6rem;
+			height: 6rem;
+			transition:
+					background-color var(--trans-dur),
+					box-shadow var(--trans-dur);
+		}
+		.clock__block--small {
+			border-radius: 0.25rem;
+			box-shadow: 0 0.5rem 2rem hsla(var(--hue),90%,50%,0.3);
+			font-size: 1em;
+			line-height: 3;
+			width: 3rem;
+			height: 3rem;
+		}
+		.clock__colon {
+			display: none;
+			font-size: 2em;
+			opacity: 0.5;
+			position: relative;
+		}
+		.clock__colon:before,
+		.clock__colon:after {
+			background-color: currentColor;
+			border-radius: 50%;
+			content: "";
+			display: block;
+			position: absolute;
+			top: -0.05em;
+			left: -0.05em;
+			width: 0.1em;
+			height: 0.1em;
+			transition: background-color var(--trans-dur);
+		}
+		.clock__colon:before {
+			transform: translateY(-200%);
+		}
+		.clock__colon:after {
+			transform: translateY(200%);
+		}
+		.clock__digit-group {
+			display: flex;
+			flex-direction: column-reverse;
+		}
+		.clock__digits {
+			width: 100%;
+			height: 100%;
+		}
+		.clock__block--bounce {
+			animation: bounce 0.75s;
+		}
+		.clock__block--bounce .clock__digit-group {
+			animation: roll 0.75s ease-in-out forwards;
+			transform: translateY(-50%);
+		}
+		.clock__block--delay1,
+		.clock__block--delay1 .clock__digit-group {
+			animation-delay: 0.1s;
+		}
+		.clock__block--delay2,
+		.clock__block--delay2 .clock__digit-group {
+			animation-delay: 0.2s;
+		}
+
+		/* Dark theme */
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--bg: hsl(var(--hue),10%,10%);
+				--fg: hsl(var(--hue),10%,90%);
+			}
+			.clock__block {
+				/*background-color: hsl(var(--hue),90%,40%);*/
+				box-shadow: 0 1rem 2rem hsla(var(--hue),90%,60%,0.4);
+			}
+			.clock__block--small {
+				box-shadow: 0 0.5rem 2rem hsla(var(--hue),90%,60%,0.4);
+			}
+		}
+
+		/* Beyond mobile */
+		@media (min-width: 768px) {
+			.clock {
+				flex-direction: row;
+			}
+			.clock__colon {
+				display: inherit;
+			}
+		}
+
+		/* Animations */
+		@keyframes bounce {
+			from,
+			to {
+				animation-timing-function: ease-in;
+				transform: translateY(0);
+			}
+			50% {
+				animation-timing-function: ease-out;
+				transform: translateY(15%);
+			}
+		}
+		@keyframes roll {
+			from {
+				transform: translateY(-50%);
+			}
+			to {
+				transform: translateY(0);
+			}
+		}
+
+
+
+		:root {
+			/*--gradient: linear-gradient(135deg, #72edf2 10%, #5151e5 100%);*/
+		}
+
+		.clear {
+			clear: both;
+		}
+
+		.container {
+			border-radius: 25px;
+			-webkit-box-shadow: 0 0 70px -10px rgba(0, 0, 0, 0.2);
+			box-shadow: 0 0 70px -10px rgba(0, 0, 0, 0.2);
+			/*background-color: #222831;*/
+			background-color: rgba(0, 0, 0, 0.51);
+			backdrop-filter: blur(1px);
+			color: #ffffff;
+			height: 400px;
+		}
+
+		.weather-side {
+			position: relative;
+			height: 100%;
+			border-radius: 25px;
+			width: 300px;
+			-webkit-box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.2);
+			box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.2);
+			-webkit-transition: -webkit-transform 300ms ease;
+			transition: -webkit-transform 300ms ease;
+			-o-transition: transform 300ms ease;
+			transition: transform 300ms ease;
+			transition: transform 300ms ease, -webkit-transform 300ms ease;
+			-webkit-transform: translateZ(0) scale(1.02) perspective(1000px);
+			transform: translateZ(0) scale(1.02) perspective(1000px);
+			float: left;
+		}
+
+		.weather-side:hover {
+			-webkit-transform: scale(1.1) perspective(1500px) rotateY(10deg);
+			transform: scale(1.1) perspective(1500px) rotateY(10deg);
+		}
+
+		.weather-gradient {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			background-image: var(--gradient);
+			border-radius: 25px;
+			opacity: 0.8;
+		}
+
+		.date-container {
+			position: absolute;
+			top: 25px;
+			left: 25px;
+		}
+
+		.date-dayname {
+			margin: 0;
+		}
+
+		.date-day {
+			display: block;
+		}
+
+		.location {
+			display: inline-block;
+			margin-top: 10px;
+		}
+
+		.location-icon {
+			display: inline-block;
+			height: 0.8em;
+			width: auto;
+			margin-right: 5px;
+		}
+
+		.weather-container {
+			position: absolute;
+			bottom: 25px;
+			left: 25px;
+		}
+
+		.weather-icon.feather {
+			height: 60px;
+			width: auto;
+		}
+
+		.weather-temp {
+			margin: 0;
+			font-weight: 700;
+			font-size: 4em;
+		}
+
+		.weather-desc {
+			margin: 0;
+		}
+
+		.info-side {
+			position: relative;
+			float: left;
+			height: 100%;
+			padding-top: 25px;
+		}
+
+		.today-info {
+			padding: 15px;
+			margin: 0 25px 25px 25px;
+			/* 	box-shadow: 0 0 50px -5px rgba(0, 0, 0, 0.25); */
+			border-radius: 10px;
+		}
+
+		.today-info > div:not(:last-child) {
+			margin: 0 0 10px 0;
+		}
+
+		.today-info > div .title {
+			float: left;
+			font-weight: 700;
+		}
+
+		.today-info > div .value {
+			float: right;
+		}
+
+		.week-list {
+			list-style-type: none;
+			padding: 0;
+			margin: 10px 35px;
+			-webkit-box-shadow: 0 0 50px -5px rgba(0, 0, 0, 0.25);
+			box-shadow: 0 0 50px -5px rgba(0, 0, 0, 0.25);
+			border-radius: 10px;
+			background: #;
+		}
+
+		.week-list > li {
+			float: left;
+			padding: 15px;
+			cursor: pointer;
+			-webkit-transition: 200ms ease;
+			-o-transition: 200ms ease;
+			transition: 200ms ease;
+			border-radius: 10px;
+		}
+
+		.week-list > li:hover {
+			-webkit-transform: scale(1.1);
+			-ms-transform: scale(1.1);
+			transform: scale(1.1);
+			background: #fff;
+			color: #222831;
+			-webkit-box-shadow: 0 0 40px -5px rgba(0, 0, 0, 0.2);
+			box-shadow: 0 0 40px -5px rgba(0, 0, 0, 0.2);
+		}
+
+		.week-list > li.active {
+			background: #fff;
+			color: #222831;
+			border-radius: 10px;
+		}
+
+		.week-list > li .day-name {
+			display: block;
+			margin: 10px 0 0 0;
+			text-align: center;
+		}
+
+		.week-list > li .day-icon {
+			display: block;
+			height: 30px;
+			width: auto;
+			margin: 0 auto;
+		}
+
+		.week-list > li .day-temp {
+			display: block;
+			text-align: center;
+			margin: 10px 0 0 0;
+			font-weight: 700;
+		}
+
+		.location-container {
+			padding: 25px 35px;
+			text-align: center;
+		}
+
+		.location-button {
+			outline: none;
+			width: 100%;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			border: none;
+			border-radius: 25px;
+			padding: 10px;
+			font-family: "Montserrat", sans-serif;
+			background-image: var(--gradient);
+			color: #ffffff;
+			font-weight: 700;
+			-webkit-box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.25);
+			box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.25);
+			cursor: pointer;
+			-webkit-transition: -webkit-transform 200ms ease;
+			transition: -webkit-transform 200ms ease;
+			-o-transition: transform 200ms ease;
+			transition: transform 200ms ease;
+			transition: transform 200ms ease, -webkit-transform 200ms ease;
+		}
+
+		.location-button:hover {
+			-webkit-transform: scale(0.95);
+			-ms-transform: scale(0.95);
+			transform: scale(0.95);
+		}
+
+		.location-button .feather {
+			height: 1em;
+			width: auto;
+			margin-right: 5px;
+		}
+
+    </style>
+</head>
+
+<body>
+<div class="nav">
+	<input type="checkbox" id="nav-check">
+	<div class="nav-header">
+		<div class="nav-title">
+			<a style="text-decoration: none;color: white" href="/">昭质的小花园</a>
+		</div>
+	</div>
+	<div class="nav-btn">
+		<label for="nav-check">
+			<span></span>
+			<span></span>
+			<span></span>
+		</label>
+	</div>
+
+	<div class="nav-links">
+		<a href="/login">聊天室</a>
+		<a href="/storybook">故事书</a>
+		<a href="/messagewall">留言墙</a>
+<!--		<a href="/love" target="_blank">爱心</a>-->
+		<a href="/photos">相册</a>
+		<a href="/reslist">影视分享</a>
+		<a href="https://github.com/Cherises" target="_blank">GitHub</a>
+<!--		<a href="https://www.facebook.com/profile.php?id=100082131441206" target="_blank">FaceBook</a>-->
+		<a href="/about">关于网站</a>
+	</div>
+</div>
+
+
+
+
+
+	<br />
+	<br />
+
+
+			<div class="clock" aria-label="00:00:00 AM">
+				<div class="clock__block clock__block--delay2" aria-hidden="true" data-time-group>
+					<div class="clock__digit-group">
+						<div class="clock__digits" data-time="a">00</div>
+						<div class="clock__digits" data-time="b">00</div>
+					</div>
+				</div>
+				<div class="clock__colon"></div>
+				<div class="clock__block clock__block--delay1" aria-hidden="true" data-time-group>
+					<div class="clock__digit-group">
+						<div class="clock__digits" data-time="a">00</div>
+						<div class="clock__digits" data-time="b">00</div>
+					</div>
+				</div>
+				<div class="clock__colon"></div>
+				<div class="clock__block" aria-hidden="true" data-time-group>
+					<div class="clock__digit-group">
+						<div class="clock__digits" data-time="a">00</div>
+						<div class="clock__digits" data-time="b">00</div>
+					</div>
+				</div>
+				<div class="clock__block clock__block--delay2 clock__block--small" aria-hidden="true" data-time-group>
+					<div class="clock__digit-group">
+						<div class="clock__digits" data-time="a">PM</div>
+						<div class="clock__digits" data-time="b">AM</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+	<br />
+
+
+
+			<div class="container">
+				<div class="weather-side">
+					<div class="weather-gradient"></div>
+					<div class="date-container">
+						<h2 class="date-dayname">星期日</h2><span class="date-day">2023-04-30</span><i class="location-icon" data-feather="map-pin"></i><span class="location">大连市</span>
+					</div>
+					<div class="weather-container"><i class="weather-icon" data-feather="sun"></i>
+						<h1 class="weather-temp">12℃</h1>
+						<h3 class="weather-desc">晴</h3>
+					</div>
+				</div>
+				<div class="info-side">
+					<div class="today-info-container">
+						<div class="today-info">
+							<div class="precipitation"> <span class="title">湿度</span><span class="value">42%</span>
+								<div class="clear"></div>
+							</div>
+							<div class="humidity"> <span class="title">风速</span><span class="value">3级</span>
+								<div class="clear"></div>
+							</div>
+							<!--                        <div class="wind"> <span class="title"></span><span class="value"></span>-->
+							<!--                            <div class="clear"></div>-->
+							<!--                        </div>-->
+						</div>
+					</div>
+					<div class="week-container">
+						<ul class="week-list">
+							<!--                        <i class="day-icon" data-feather="sun">-->
+							<li class="active"></i><span class="day-name">一</span><span class="day-temp">12℃~20℃</span><span class="day-temp">晴</span></li>
+							<li><span class="day-name">二</span><span class="day-temp">13℃~21℃</span><span class="day-temp">阴</span></li>
+							<li><span class="day-name">三</span><span class="day-temp">12℃~19℃</span><span class="day-temp">阴</span></li>
+							<li><span class="day-name">四</span><span class="day-temp">14℃~22℃</span><span class="day-temp">小雨</span></li>
+							<div class="clear"></div>
+						</ul>
+					</div>
+
+					<div class="location-container">
+						<span>愿你拥有比阳光明媚的心情</span>
+<!--						<button class="location-button"> <i data-feather="map-pin"></i><span th:text="${weather[19]}">Change location</span></button>-->
+					</div>
+				</div>
+			</div>
+
+<script>
+	window.addEventListener("DOMContentLoaded",() => {
+		const clock = new BouncyBlockClock(".clock");
+	});
+
+	class BouncyBlockClock {
+		constructor(qs) {
+			this.el = document.querySelector(qs);
+			this.time = { a: [], b: [] };
+			this.rollClass = "clock__block--bounce";
+			this.digitsTimeout = null;
+			this.rollTimeout = null;
+			this.mod = 0 * 60 * 1000;
+
+			this.loop();
+		}
+		animateDigits() {
+			const groups = this.el.querySelectorAll("[data-time-group]");
+
+			Array.from(groups).forEach((group,i) => {
+				const { a, b } = this.time;
+
+				if (a[i] !== b[i]) group.classList.add(this.rollClass);
+			});
+
+			clearTimeout(this.rollTimeout);
+			this.rollTimeout = setTimeout(this.removeAnimations.bind(this),900);
+		}
+		displayTime() {
+			// screen reader time
+			const timeDigits = [...this.time.b];
+			const ap = timeDigits.pop();
+
+			this.el.ariaLabel = `${timeDigits.join(":")} ${ap}`;
+
+			// displayed time
+			Object.keys(this.time).forEach(letter => {
+				const letterEls = this.el.querySelectorAll(`[data-time="${letter}"]`);
+
+				Array.from(letterEls).forEach((el,i) => {
+					el.textContent = this.time[letter][i];
+				});
+			});
+		}
+		loop() {
+			this.updateTime();
+			this.displayTime();
+			this.animateDigits();
+			this.tick();
+		}
+		removeAnimations() {
+			const groups = this.el.querySelectorAll("[data-time-group]");
+
+			Array.from(groups).forEach(group => {
+				group.classList.remove(this.rollClass);
+			});
+		}
+		tick() {
+			clearTimeout(this.digitsTimeout);
+			this.digitsTimeout = setTimeout(this.loop.bind(this),1e3);
+		}
+		updateTime() {
+			const rawDate = new Date();
+			const date = new Date(Math.ceil(rawDate.getTime() / 1e3) * 1e3 + this.mod);
+			let h = date.getHours();
+			const m = date.getMinutes();
+			const s = date.getSeconds();
+			const ap = h < 12 ? "AM" : "PM";
+
+			if (h === 0) h = 12;
+			if (h > 12) h -= 12;
+
+			this.time.a = [...this.time.b];
+			this.time.b = [
+				(h < 10 ? `0${h}` : `${h}`),
+				(m < 10 ? `0${m}` : `${m}`),
+				(s < 10 ? `0${s}` : `${s}`),
+				ap
+			];
+
+			if (!this.time.a.length) this.time.a = [...this.time.b];
+		}
+	}
+</script>
+
+</body>
+
 </html>
