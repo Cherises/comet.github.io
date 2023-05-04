@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>相册</title>
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            background-color: black;
+            margin: 0rem;
+            overflow: hidden;
+        }
+
+        #image-track {
+            display: flex;
+            gap: 4vmin;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(0%, -50%);
+            user-select: none; /* -- Prevent image highlighting -- */
+        }
+
+        #image-track > .image {
+            width: 50vmin;
+            /* height: 56vmin; */
+            object-fit: cover;
+            object-position: 100% center;
+            border-radius: 25px;
+        }
+
+        /* -- YouTube Link Styles -- */
+
+        body.menu-toggled > .meta-link > span {
+            color: rgb(30, 30, 30);
+        }
+
+        #source-link {
+            bottom: 60px;
+        }
+
+        #source-link > i {
+            color: rgb(94, 106, 210);
+        }
+
+        #yt-link > i {
+            color: rgb(239, 83, 80);
+        }
+
+        .meta-link {
+            align-items: center;
+            backdrop-filter: blur(3px);
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            bottom: 10px;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            display: inline-flex;
+            gap: 5px;
+            left: 10px;
+            padding: 10px 20px;
+            position: fixed;
+            text-decoration: none;
+            transition: background-color 400ms, border-color 400ms;
+            z-index: 10000;
+        }
+
+        .meta-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .meta-link > i, .meta-link > span {
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .meta-link > span {
+            color: white;
+            font-family: "Rubik", sans-serif;
+            font-weight: 500;
+        }
+
+
+
+
+
+
+
+
+        .nav {
+            height: 55px;
+            width: 100%;
+            /*background-color: #4d4d4d;*/
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.51);
+            backdrop-filter: blur(5px);
+        }
+
+        .nav > .nav-header {
+            display: inline;
+        }
+
+        .nav > .nav-header > .nav-title {
+            display: inline-block;
+            font-size: 22px;
+            color: #fff;
+            padding: 10px 10px 10px 10px;
+        }
+
+        .nav > .nav-btn {
+            display: none;
+        }
+
+        .nav > .nav-links {
+            display: inline;
+            float: right;
+            font-size: 18px;
+        }
+
+        .nav > .nav-links > a {
+            display: inline-block;
+            padding: 13px 10px 13px 10px;
+            text-decoration: none;
+            color: #efefef;
+        }
+
+        .nav > .nav-links > a:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .nav > #nav-check {
+            display: none;
+        }
+
+        @media (max-width:600px) {
+            .nav > .nav-btn {
+                display: inline-block;
+                position: absolute;
+                right: 0px;
+                top: 0px;
+            }
+            .nav > .nav-btn > label {
+                display: inline-block;
+                width: 50px;
+                height: 50px;
+                padding: 13px;
+            }
+            .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+            .nav > .nav-btn > label > span {
+                display: block;
+                width: 25px;
+                height: 10px;
+                border-top: 2px solid #eee;
+            }
+            .nav > .nav-links {
+                position: absolute;
+                display: block;
+                width: 100%;
+                background-color: #333;
+                height: 0px;
+                transition: all 0.3s ease-in;
+                overflow-y: hidden;
+                top: 50px;
+                left: 0px;
+            }
+            .nav > .nav-links > a {
+                display: block;
+                width: 100%;
+            }
+            .nav > #nav-check:not(:checked) ~ .nav-links {
+                height: 0px;
+            }
+            .nav > #nav-check:checked ~ .nav-links {
+                height: calc(100vh - 50px);
+                overflow-y: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav">
+    <input type="checkbox" id="nav-check">
+    <div class="nav-header">
+        <div class="nav-title">
+            <a style="text-decoration: none;color: white" href="/">昭质的小花园</a>
+        </div>
+    </div>
+    <div class="nav-btn">
+        <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </div>
+
+    <div class="nav-links">
+        <a href="/login">聊天室</a>
+        <a href="/storybook">故事书</a>
+        <a href="/messagewall">留言墙</a>
+        <!--		<a href="/love" target="_blank">爱心</a>-->
+        <a href="/photos">相册</a>
+        <a href="/reslist">影视分享</a>
+        <a href="https://github.com/Cherises" target="_blank">GitHub</a>
+        <!--		<a href="https://www.facebook.com/profile.php?id=100082131441206" target="_blank">FaceBook</a>-->
+        <a href="/about">关于网站</a>
+    </div>
+</div>
+<audio style="float: left" src="image/music/夜空中最亮的星-逃跑计划-4890172.mp3" id="dd" autoplay="autoplay" controls="controls" loop="loop"></audio>
+
+
+<div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+    <img class="image" src="/image/kl.png" draggable="false"><img class="image" src="/image/d063646e97392638e07da24ce6b8c3cb_3567507076955258130.png" draggable="false"><img class="image" src="/image/d35a0a1d13f821fd55a6951210c672ac_8868204139408761896.png" draggable="false"><img class="image" src="/image/cb95a5b5d57165a4970d801c5dcf0435_8788044469681939890.png" draggable="false"><img class="image" src="/image/2021072011090118454.png" draggable="false"><img class="image" src="/image/448bc697f852e5726717fa2be839eedc_208974302606516196.png" draggable="false"><img class="image" src="/image/494f7aa4668cb7fe2d6d0463e7cc835f_3323890008016600534.png" draggable="false"><img class="image" src="/image/2c752da0a5921583011a4ec36f83703c_8500020629476268998.png" draggable="false"><img class="image" src="/image/1ae0d0aaad9ee9b55652ea7ec67f0465_624394286022075834.png" draggable="false"><img class="image" src="/image/6c009f0631eb71e697c2da76b608a51e_1586187959203635452.png" draggable="false"><img class="image" src="/image/593e6a6d5d8836ca2ab5c27a98593e58_7195951238560837785.png" draggable="false"><img class="image" src="/image/2022020814003845991.png" draggable="false"><img class="image" src="/image/xh.png" draggable="false"><img class="image" src="/image/d978cf1ce85e372971bdcf6add639e8f_5385395843160526652.png" draggable="false"><img class="image" src="/image/ht.png" draggable="false"><img class="image" src="/image/纳西妲.png" draggable="false"><img class="image" src="/image/微信图片_20221009191515.jpg" draggable="false"><img class="image" src="/image/微信图片_20221009191543.jpg" draggable="false">
+</div>
+
+<a id="source-link" class="meta-link" href="/uploadimage">
+    <i class="fa-solid fa-link"></i>
+    <span>上传</span>
+</a>
+
+
+<script>
+    const track = document.getElementById("image-track");
+
+    const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
+
+    const handleOnUp = () => {
+        track.dataset.mouseDownAt = "0";
+        track.dataset.prevPercentage = track.dataset.percentage;
+    }
+
+    const handleOnMove = e => {
+        if(track.dataset.mouseDownAt === "0") return;
+
+        const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
+            maxDelta = window.innerWidth / 2;
+
+        const percentage = (mouseDelta / maxDelta) * -100,
+            nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
+            nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
+
+        track.dataset.percentage = nextPercentage;
+
+        track.animate({
+            transform: `translate(${nextPercentage}%, -50%)`
+        }, { duration: 1200, fill: "forwards" });
+
+        for(const image of track.getElementsByClassName("image")) {
+            image.animate({
+                objectPosition: `${100 + nextPercentage}% center`
+            }, { duration: 1200, fill: "forwards" });
+        }
+    }
+
+    /* -- Had to add extra lines for touch events -- */
+
+    window.onmousedown = e => handleOnDown(e);
+
+    window.ontouchstart = e => handleOnDown(e.touches[0]);
+
+    window.onmouseup = e => handleOnUp(e);
+
+    window.ontouchend = e => handleOnUp(e.touches[0]);
+
+    window.onmousemove = e => handleOnMove(e);
+
+    window.ontouchmove = e => handleOnMove(e.touches[0]);
+</script>
+</body>
+</html>
