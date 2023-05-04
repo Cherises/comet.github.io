@@ -147,6 +147,7 @@
 			flex-direction: column;
 			flex-wrap: wrap;
 			align-items: center;
+			padding-top:200px;
 		}
 		.clock__block {
 			/*background-color: hsl(var(--hue),10%,90%);*/
@@ -564,50 +565,6 @@
 
 	<br />
 
-
-
-			<div class="container">
-				<div class="weather-side">
-					<div class="weather-gradient"></div>
-					<div class="date-container">
-						<h2 class="date-dayname">星期日</h2><span class="date-day">2023-04-30</span><i class="location-icon" data-feather="map-pin"></i><span class="location">大连市</span>
-					</div>
-					<div class="weather-container"><i class="weather-icon" data-feather="sun"></i>
-						<h1 class="weather-temp">12℃</h1>
-						<h3 class="weather-desc">晴</h3>
-					</div>
-				</div>
-				<div class="info-side">
-					<div class="today-info-container">
-						<div class="today-info">
-							<div class="precipitation"> <span class="title">湿度</span><span class="value">42%</span>
-								<div class="clear"></div>
-							</div>
-							<div class="humidity"> <span class="title">风速</span><span class="value">3级</span>
-								<div class="clear"></div>
-							</div>
-							<!--                        <div class="wind"> <span class="title"></span><span class="value"></span>-->
-							<!--                            <div class="clear"></div>-->
-							<!--                        </div>-->
-						</div>
-					</div>
-					<div class="week-container">
-						<ul class="week-list">
-							<!--                        <i class="day-icon" data-feather="sun">-->
-							<li class="active"></i><span class="day-name">一</span><span class="day-temp">12℃~20℃</span><span class="day-temp">晴</span></li>
-							<li><span class="day-name">二</span><span class="day-temp">13℃~21℃</span><span class="day-temp">阴</span></li>
-							<li><span class="day-name">三</span><span class="day-temp">12℃~19℃</span><span class="day-temp">阴</span></li>
-							<li><span class="day-name">四</span><span class="day-temp">14℃~22℃</span><span class="day-temp">小雨</span></li>
-							<div class="clear"></div>
-						</ul>
-					</div>
-
-					<div class="location-container">
-						<span>愿你拥有比阳光明媚的心情</span>
-<!--						<button class="location-button"> <i data-feather="map-pin"></i><span th:text="${weather[19]}">Change location</span></button>-->
-					</div>
-				</div>
-			</div>
 
 <script>
 	window.addEventListener("DOMContentLoaded",() => {
