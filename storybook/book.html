@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html data-wf-page="5aa72055900db2422fa27355" data-wf-site="5aa72055900db2ba27a27354" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>故事书</title>
+
+
+  <style>
+    .nav {
+      height: 55px;
+      width: 100%;
+      /*background-color: #4d4d4d;*/
+      position: relative;
+      background-color: rgba(0, 0, 0, 0.51);
+      backdrop-filter: blur(5px);
+    }
+
+    .nav > .nav-header {
+      display: inline;
+    }
+
+    .nav > .nav-header > .nav-title {
+      display: inline-block;
+      font-size: 22px;
+      color: #fff;
+      padding: 10px 10px 10px 10px;
+    }
+
+    .nav > .nav-btn {
+      display: none;
+    }
+
+    .nav > .nav-links {
+      display: inline;
+      float: right;
+      font-size: 18px;
+    }
+
+    .nav > .nav-links > a {
+      display: inline-block;
+      padding: 13px 10px 13px 10px;
+      text-decoration: none;
+      color: #efefef;
+    }
+
+    .nav > .nav-links > a:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .nav > #nav-check {
+      display: none;
+    }
+
+    @media (max-width:600px) {
+      .nav > .nav-btn {
+        display: inline-block;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+      }
+      .nav > .nav-btn > label {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        padding: 13px;
+      }
+      .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+      .nav > .nav-btn > label > span {
+        display: block;
+        width: 25px;
+        height: 10px;
+        border-top: 2px solid #eee;
+      }
+      .nav > .nav-links {
+        position: absolute;
+        display: block;
+        width: 100%;
+        background-color: #333;
+        height: 0px;
+        transition: all 0.3s ease-in;
+        overflow-y: hidden;
+        top: 50px;
+        left: 0px;
+      }
+      .nav > .nav-links > a {
+        display: block;
+        width: 100%;
+      }
+      .nav > #nav-check:not(:checked) ~ .nav-links {
+        height: 0px;
+      }
+      .nav > #nav-check:checked ~ .nav-links {
+        height: calc(100vh - 50px);
+        overflow-y: auto;
+      }
+    }
+  </style>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Webflow" name="generator">
+  <link href="./bookshow.css" rel="stylesheet" type="text/css">
+  <!-- <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/book-project-css.webflow.css" rel="stylesheet" type="text/css"> -->
+  <script src="./bookshowwebfont.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    WebFont.load({
+      google: {
+        families: ["PT Sans:400,400italic,700,700italic"]
+      }
+    });
+  </script>
+  <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif]-->
+  <script type="text/javascript">
+    ! function(o, c) {
+      var n = c.documentElement,
+              t = " w-mod-";
+      n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
+    }(window, document);
+  </script>
+  <link href="./bookshowfavicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="./bookshowwebclip.png" rel="apple-touch-icon">
+  <style>
+    body{
+      background-image: url("genshin/1.2KV 其一1920x1080.jpg");
+      background-size: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div class="nav">
+  <input type="checkbox" id="nav-check">
+  <div class="nav-header">
+    <div class="nav-title">
+      <a style="text-decoration: none;color: white" href="/">昭质的小花园</a>
+    </div>
+  </div>
+  <div class="nav-btn">
+    <label for="nav-check">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+  </div>
+
+  <div class="nav-links">
+    <a href="/login">聊天室</a>
+    <a href="/storybook">故事书</a>
+    <a href="/messagewall">留言墙</a>
+<!--    <a href="/love" target="_blank">爱心</a>-->
+    <a href="/photos">相册</a>
+    <a href="/reslist">影视分享</a>
+    <a href="https://github.com/Cherises" target="_blank">GitHub</a>
+<!--    <a href="https://www.facebook.com/profile.php?id=100082131441206" target="_blank">FaceBook</a>-->
+    <a href="/about">关于网站</a>
+  </div>
+</div>
+
+
+
+
+<div class="scene">
+  <div class="book-wrap">
+    <div class="left-side">
+      <div class="book-cover-left"></div>
+      <div class="layer1">
+        <div class="page-left"></div>
+      </div>
+      <div class="layer2">
+        <div class="page-left"></div>
+      </div>
+      <div class="layer3">
+        <div class="page-left"></div>
+      </div>
+      <div class="layer4">
+        <div class="page-left"></div>
+      </div>
+      <div class="layer-text">
+        <div class="page-left-2">
+          <div class="corner"></div>
+          <div class="corner2"></div>
+          <div class="corner-fold"></div>
+          <div class="page-text w-richtext">
+            <h3><strong>好看的皮囊千篇一律</strong></h3>
+            <h6>BY <a href="/storybook" target="_blank">老杨的猫头鹰</a></h6>
+            <p>‍</p>
+            <p>所谓讨喜，其实是讨来烦恼，佯装欢喜；所谓讨厌，其实是讨人喜欢，且百看不厌</p>
+            <br />
+            <p>所有不再钟情的恋人，渐行渐远的朋友，不相为谋的知己，都是当初自茫茫人海中独独看到的他，如今，只需要再将他好好的还回人海中，如此，而已</p>
+            <br />
+            <p>愿意留下来的人，就好好相处，彼此信任，想要远走的人，就挥挥手说一声抱歉，恕不远送</p>
+            <br />
+            <p>他本是个凡人，只是你的喜欢为他镀上了金身</p>
+            <br />
+            <p>对于不靠谱之人，事不过二，第二次的信任并不是给了他一个改错的机会，而是给了自己一个再受伤的机会</p>
+            <br />
+            <p>一个无趣的人遇见另一个无趣的人，只会困在一起烂掉；而一个有趣的灵魂遇见另一个有趣的灵魂，会因为对方而灼灼生辉</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="center"></div>
+    <div class="right-side">
+      <div class="book-cover-right"></div>
+      <div class="layer1">
+        <div class="page-right"></div>
+      </div>
+      <div class="layer2 right">
+        <div class="page-right"></div>
+      </div>
+      <div class="layer3 right">
+        <div class="page-right"></div>
+      </div>
+      <div class="layer4 right">
+        <div class="page-right"></div>
+      </div>
+      <div class="layer-text right">
+        <div class="page-right-2">
+          <div class="page-text w-richtext">
+            <h3><strong>有趣的灵魂万里挑一</strong></h3>
+            <h6>BY <a href="/storybook" target="_blank">老杨的猫头鹰</a></h6>
+            <p>‍</p>
+            <p>最悲哀的事莫过于，曾经笑逐颜开的两个人，到如今已经陌生到连是否点赞都要反复掂量的地步</p>
+            <br/>
+            <p>希望有一天，你能和这个一本正经的世界擦出精彩绝伦的火花；也希望某一刻，你能幸运的成为别人冗长生命里有趣的某某</p>
+            <br/>
+            <p>不要和消耗你的人在一起，也不要成为消耗别人的人</p>
+            <br/>
+            <p>恋爱的真相是这样的，有心在一起的人，再凶的争吵也会各自找台阶下，然后很快重归于好；离心的人，再微不足道的一次别扭，也会趁机找借口溜掉</p>
+            <br/>
+            <p>葡萄吃到嘴里，才有资格说它是酸的！</p>
+            <br/>
+            <p>主动选择孤独的人，并不是真正的孤独，真正孤独的反而是那些拼命挤进人群里的人</p>
+            <br/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="storybook/bookshowjquery-3.3.1.min.js" type="text/javascript" intergrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="js/webflow.js" type="text/javascript"></script>
+<!--[if lte IE 9]><script src="storybook/placeholders.min.js"></script><![endif]-->
+</body>
+</html>
